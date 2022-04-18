@@ -1,0 +1,3 @@
+# Relocation causes build error: "-z norelro ignored"
+# CONFIG_RELOCATABLE is not set
+# CONFIG_RANDOMIZE_BASE is not set

@@ -1,0 +1,71 @@
+From 8cfb1957bb765902b68f9f94656190b45c727075 Mon Sep 17 00:00:00 2001
+From: Christian Stewart <christian@paral.in>
+Date: Tue, 17 May 2022 05:21:14 -0700
+Subject: [PATCH] Revert "selinux: Relocate ss_initialized and
+ selinux_enforcing to separate 4k"
+
+Fixes build errors with selinux on newer gcc.
+
+- That out of tree patch causes the resulting kernel image to be too large, causing ld.lld to error;
+  likely due to the additional section and alignment requirements.
+---
+ arch/arm64/kernel/vmlinux.lds.S | 8 --------
+ include/linux/init.h            | 2 --
+ security/selinux/hooks.c        | 2 +-
+ 3 files changed, 1 insertion(+), 11 deletions(-)
+
+diff --git a/arch/arm64/kernel/vmlinux.lds.S b/arch/arm64/kernel/vmlinux.lds.S
+index fd1c65b901db..78b2fec39ba0 100644
+--- a/arch/arm64/kernel/vmlinux.lds.S
++++ b/arch/arm64/kernel/vmlinux.lds.S
+@@ -68,10 +68,6 @@ jiffies = jiffies_64;
+ #define TRAMP_TEXT
+ #endif
+ 
+-#define RTIC_BSS					\
+-	. = ALIGN(PAGE_SIZE);				\
+-	KEEP(*(.bss.rtic));			\
+-	. = ALIGN(PAGE_SIZE);				\
+ /*
+  * The size of the PE/COFF section that covers the kernel image, which
+  * runs from stext to _edata, must be a round multiple of the PE/COFF
+@@ -252,10 +248,6 @@ SECTIONS
+ 	STABS_DEBUG
+ 
+ 	HEAD_SYMBOLS
+-
+-	.bss : {			/* bss segment		*/
+-         RTIC_BSS
+-	}
+ }
+ 
+ /*
+diff --git a/include/linux/init.h b/include/linux/init.h
+index bc719c7da735..586dd187e22f 100644
+--- a/include/linux/init.h
++++ b/include/linux/init.h
+@@ -322,8 +322,6 @@ void __init parse_early_options(char *cmdline);
+ /* Data marked not to be saved by software suspend */
+ #define __nosavedata __section(.data..nosave)
+ 
+-#define __rticdata  __attribute__((section(".bss.rtic")))
+-
+ #ifdef MODULE
+ #define __exit_p(x) x
+ #else
+diff --git a/security/selinux/hooks.c b/security/selinux/hooks.c
+index e7778880c093..ceb4621b3a99 100644
+--- a/security/selinux/hooks.c
++++ b/security/selinux/hooks.c
+@@ -100,7 +100,7 @@
+ #include "audit.h"
+ #include "avc_ss.h"
+ 
+-struct selinux_state selinux_state __rticdata;
++struct selinux_state selinux_state;
+ 
+ /* SECMARK reference count */
+ static atomic_t selinux_secmark_refcount = ATOMIC_INIT(0);
+-- 
+2.35.1
+
