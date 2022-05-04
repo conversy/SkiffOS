@@ -43,13 +43,14 @@ tested by the developers unless otherwise noted.
 
 | **Board**      | **Config Package** | Status       |
 |----------------|--------------------|--------------|
-| [u] + u2       | odroid/u           | Discontinued |
 | [c2]           | odroid/c2          |              |
+| [c4]           | odroid/c4          | Reboot issue |
+| [hc2]          | odroid/xu          |              |
+| [hc4]          | odroid/hc4         | Reboot issue |
+| [n2]           | odroid/n2          | Includes n2+ |
+| [u] + u2       | odroid/u           | Discontinued |
 | [xu3]          | odroid/xu          | Discontinued |
 | [xu4] (+ xu4q) | odroid/xu          |              |
-| [hc2]          | odroid/xu          |              |
-| [n2]           | odroid/n2          | Includes n2+ |
-| [c4]           | odroid/c4          | Reboot issue |
 
 [u]: https://wiki.odroid.com/old_product/odroid-x_u_q/odroid_u3/odroid-u3
 [xu3]: https://wiki.odroid.com/old_product/odroid-xu3/odroid-xu3
@@ -58,6 +59,7 @@ tested by the developers unless otherwise noted.
 [n2]: https://www.hardkernel.com/shop/odroid-n2-with-4gbyte-ram-2/
 [c2]: https://www.hardkernel.com/shop/odroid-c2/
 [c4]: https://www.hardkernel.com/shop/odroid-c4/
+[hc4]: https://www.hardkernel.com/shop/odroid-hc4/
 
 ## SD Card Compatibility
 
