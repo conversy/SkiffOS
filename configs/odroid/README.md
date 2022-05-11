@@ -47,6 +47,7 @@ tested by the developers unless otherwise noted.
 | [c4]           | odroid/c4          | Reboot issue |
 | [hc2]          | odroid/xu          |              |
 | [hc4]          | odroid/hc4         | Reboot issue |
+| [m1]           | odroid/m1          |              |
 | [n2]           | odroid/n2          | Includes n2+ |
 | [u] + u2       | odroid/u           | Discontinued |
 | [xu3]          | odroid/xu          | Discontinued |
@@ -57,6 +58,7 @@ tested by the developers unless otherwise noted.
 [xu4]: https://wiki.odroid.com/odroid-xu4/odroid-xu4
 [hc2]: https://www.hardkernel.com/shop/odroid-hc2-home-cloud-two/
 [n2]: https://www.hardkernel.com/shop/odroid-n2-with-4gbyte-ram-2/
+[m1]: https://www.hardkernel.com/shop/odroid-m1-with-8gbyte-ram/
 [c2]: https://www.hardkernel.com/shop/odroid-c2/
 [c4]: https://www.hardkernel.com/shop/odroid-c4/
 [hc4]: https://www.hardkernel.com/shop/odroid-hc4/
@@ -91,7 +93,7 @@ vendor & signed, and cannot be compiled by Skiff, depending on the board.
 Thank you to [tobetter] for patching / testing the latest Linux kernels for the
 Odroid series of boards.
 
-There is a [SkiffOS Linux] which restores XU4 support in newer kernels.
+The [SkiffOS Linux] fork restores support for older boards in newer kernels.
 
 [tobetter]: https://github.com/tobetter/linux
-[SkiffOS Linux]: https://github.com/skiffos/linux/tree/skiff-odroid-5.16.y
+[SkiffOS Linux]: https://github.com/skiffos/linux/tree/skiff-odroid-5.18.y
